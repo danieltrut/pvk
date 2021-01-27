@@ -3,6 +3,9 @@
 
 class Core
 { // class begin
+    protected $currentController = 'Pages';
+    protected $currentMethod = 'index';
+    protected $params = [];
     // constructor
 
     // get url data
@@ -11,10 +14,21 @@ class Core
      */
     public function __construct()
     {
-        $this->geturl();
+        $url = $this->getUrl();
+        $controllerName = ucwords($url[0]);
+        $controllerFile = '../app/controllers/'.$controllerName.'.php';
+        if(file_exists($controllerFile)) {
+            $this->currentController = $controllerName;
+            unset($url[0]);
+        }
+        require_once '../app/controllers/'.$this->currentController.'.php';
+        $this->currentController = new $this->currentController;
+        echo $controllerName.'<br>';
+        print_r($this ->currentController);
+        print_r($url);
     }
 
-    public function geturl(){
+    public function getUrl(){
         if(isset($_GET['url'])){
             $url = $_GET['url'];
             $url = rtrim($url, '/');
