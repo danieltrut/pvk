@@ -23,9 +23,21 @@ class Core
         }
         require_once '../app/controllers/'.$this->currentController.'.php';
         $this->currentController = new $this->currentController;
-        echo $controllerName.'<br>';
+
+        if(method_exists($this->currentController, $url[1])) {
+            $this->currentMethod = $url[1];
+            unset($url[1]);
+        }
+        $this->params = $url ? array_values($url) : array();
+
+        call_user_func_array(array($this->currentController, $this->currentMethod), $this->params);
+
+
+        /**
+        print_r($this->params); echo $controllerName.'<br>';
         print_r($this ->currentController);
-        print_r($url);
+        echo $this->currentMethod.'<br>';
+        print_r($url); */
     }
 
     public function getUrl(){
