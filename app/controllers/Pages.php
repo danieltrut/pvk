@@ -22,12 +22,12 @@ class Pages extends Controller
     }
     public function about(){
         // model test
-        // $this->pagesModel->addUser();
+       // $this->pagesModel->addUser();
 
-        $users = $this->pagesModel->getOneUser();
-        print_r($users);
-
-
+       //$users = $this->pagesModel->getUsers();
+       // print_r($users);
+    $usersCount = $this->pagesModel->usersCount();
+    echo 'Users in db -'.$usersCount.'<br>';
         $data = array('content' => 'Pages about view is loaded by mvc');
       $this->view('pages/about', $data);
     }

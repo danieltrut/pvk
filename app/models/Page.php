@@ -26,14 +26,14 @@ class Page
         $this->db->bind('id', 1);
         return $this->db->getOne();
     }
-   // public function getUsers(){
-       // $this->db->query('SELECT * FROM users');
-      //  return $this->db->getAll();
-  //  }
-  //  public function usersCount(){
-   //     $this->getUsers();
-   //     return $this->db->rowCount();
- //   }
+   public function getUsers(){
+        $this->db->query('SELECT * FROM users');
+        return $this->db->getAll();
+    }
+    public function usersCount(){
+        $this->getUsers();
+        return $this->db->rowCount();
+ }
 
 
 }

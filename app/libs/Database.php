@@ -57,7 +57,15 @@ class Database
     }
     public function getOne() {
         $this->execute();
-        return $this->stmt->fetch(PDO::FETCH_ASSOC);
+        return $this->stmt->fetch(PDO::FETCH_OBJ);
+    }
+    public function getAll() {
+        $this->execute();
+        return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function rowCount() {
+        return $this->stmt->rowCount();
     }
 
 }
