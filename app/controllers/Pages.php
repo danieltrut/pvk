@@ -13,6 +13,9 @@ class Pages extends Controller
     }
 
     public function index(){
+        // model test
+        $this->pagesModel->addUser();
+        echo 'user data is saved<br>';
         // echo 'index method is loaded<br>';
         $data = array(
             'title' => 'Welcome to pages',
